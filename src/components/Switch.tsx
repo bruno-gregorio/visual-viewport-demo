@@ -15,7 +15,7 @@ export function Switch<T extends string | number>({
   onChange
 }: SwitchProps<T>) {
   return (
-    <div className='inline-flex gap-1 rounded-xl border border-white/10 bg-white/5 p-1'>
+    <div className='flex flex-wrap gap-1 rounded-xl border border-white/10 bg-white/5 p-1'>
       {options.map((option) => {
         const isActive = option.value === value
         return (
@@ -23,7 +23,7 @@ export function Switch<T extends string | number>({
             key={String(option.value)}
             type='button'
             onClick={() => onChange(option.value)}
-            className={`rounded-lg px-4 py-2 text-sm font-medium transition ${
+            className={`flex-1 rounded-lg px-4 py-2 text-sm font-medium whitespace-nowrap transition ${
               isActive
                 ? 'bg-indigo-500 text-white'
                 : 'text-neutral-400 hover:text-neutral-100'
