@@ -1,30 +1,30 @@
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import { useVisualViewport } from './use-visual-viewport'
 
 export function useVisualViewportVars() {
   const viewport = useVisualViewport()
+  const update = useCallback(() => {
+    document.body.style.setProperty(
+      '--spacing-vvh',
+      viewport?.height ? `${viewport.height}px` : '100dvh'
+    )
+    document.body.style.setProperty(
+      '--spacing-vvw',
+      viewport?.width ? `${viewport.width}px` : '100dvw'
+    )
+  }, [viewport?.height, viewport?.width])
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only using those values
   useEffect(() => {
     if (!viewport) {
       return
     }
 
-    const update = () => {
-      document.body.style.setProperty('--spacing-vvh', `${viewport.height}px`)
-      document.body.style.setProperty('--spacing-vvw', `${viewport.width}px`)
-    }
-
     update()
 
-    viewport.addEventListener('resize', update)
-    window.addEventListener('touchend', update)
-
     return () => {
-      viewport.removeEventListener('resize', update)
-      window.removeEventListener('touchend', update)
-
       document.body.style.removeProperty('--spacing-vvh')
       document.body.style.removeProperty('--spacing-vvw')
     }
-  }, [viewport])
+  }, [viewport?.height, viewport?.width])
 }

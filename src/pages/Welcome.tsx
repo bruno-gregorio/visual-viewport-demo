@@ -24,7 +24,7 @@ export function Welcome() {
       displayClass = 'h-lvh'
       break
     case 'vvh':
-      displayClass = 'h-vvh'
+      displayClass = 'fixed top-0 left-0 h-vvh'
       break
     default:
       displayClass = 'h-dvh'
@@ -63,15 +63,9 @@ export function Welcome() {
           <form className='flex gap-2' onSubmit={e => e.preventDefault()}>
             <input
               type='text'
-              placeholder='Say something…'
+              placeholder='Focus to display keyboard'
               className='flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 placeholder:text-neutral-500 focus:border-indigo-400 focus:outline-none'
             />
-            <button
-              type='submit'
-              className='rounded-xl bg-indigo-500 px-4 py-3 font-medium hover:bg-indigo-400'
-            >
-              Send
-            </button>
           </form>
         </footer>
       </div>

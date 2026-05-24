@@ -21,7 +21,7 @@ function getSnapshot(): VisualViewport | null {
     return null
   }
 
-  return window.visualViewport ?? null
+  return window.visualViewport ? { ...window.visualViewport } : null
 }
 
 function getServerSnapshot(): VisualViewport | null {
