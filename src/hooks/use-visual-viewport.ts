@@ -16,18 +16,30 @@ function subscribe(callback: () => void) {
   }
 }
 
-function getSnapshot(): VisualViewport | null {
-  if (typeof window === 'undefined') {
+function getHeightSnapshot(): number | null {
+  if (typeof window === 'undefined' || !window.visualViewport) {
     return null
   }
 
-  return window.visualViewport ? { ...window.visualViewport } : null
+  return window.visualViewport.height
 }
 
-function getServerSnapshot(): VisualViewport | null {
+function getWidthSnapshot(): number | null {
+  if (typeof window === 'undefined' || !window.visualViewport) {
+    return null
+  }
+
+  return window.visualViewport.width
+}
+
+function getServerSnapshot(): null {
   return null
 }
 
-export function useVisualViewport() {
-  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
+export function useVisualViewportHeight() {
+  return useSyncExternalStore(subscribe, getHeightSnapshot, getServerSnapshot)
+}
+
+export function useVisualViewportWidth() {
+  return useSyncExternalStore(subscribe, getWidthSnapshot, getServerSnapshot)
 }
