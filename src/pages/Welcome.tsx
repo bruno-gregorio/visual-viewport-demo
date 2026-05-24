@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Switch } from '../components/Switch'
+import { useVisualViewportVars } from '../hooks/use-visual-viewport-vars'
 
 type DisplayType = 'dvh' | 'svh' | 'lvh' | 'vh' | '100%' | 'vvh'
 
 export function Welcome() {
+  useVisualViewportVars()
   const [display, setDisplay] = useState<DisplayType>('dvh')
 
   let displayClass = 'h-dvh'

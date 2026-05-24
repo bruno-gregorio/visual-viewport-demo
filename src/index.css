@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+  --spacing-vvh: 100dvh;
+  --spacing-vvw: 100dvw;
+}
