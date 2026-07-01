@@ -1,6 +1,6 @@
 import { useState } from 'react'
+import { useVisualViewportVars } from 'react-vv'
 import { Switch } from '../components/Switch'
-import { useVisualViewportVars } from '../hooks/use-visual-viewport-vars'
 
 type DisplayType = 'dvh' | 'svh' | 'lvh' | 'vh' | '100%' | 'vvh'
 
