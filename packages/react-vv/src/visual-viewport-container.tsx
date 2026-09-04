@@ -1,6 +1,6 @@
 'use client'
 
-import type { HTMLProps, CSSProperties } from 'react'
+import type { CSSProperties, HTMLProps } from 'react'
 import {
   useVisualViewportHeight,
   useVisualViewportOffsetTop,
@@ -33,8 +33,12 @@ export function VisualViewportContainer(props: VisualViewportContainerProps) {
     height: controlHeight ? (height ? `${height}px` : '100dvh') : undefined,
     width: controlWidth ? (width ? `${width}px` : '100dvw') : undefined,
     position: 'fixed',
-    top: controlHeight ? `${offsetTop ?? 0}px` : '0px',
+    top: controlHeight ? `${offsetTop ?? 0}px` : '0px'
   }
 
-  return <div style={inlineStyles} {...otherProps}>{children}</div>
+  return (
+    <div style={inlineStyles} {...otherProps}>
+      {children}
+    </div>
+  )
 }
