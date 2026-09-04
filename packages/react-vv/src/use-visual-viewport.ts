@@ -25,7 +25,16 @@ function getHeightSnapshot(): number | null {
     return null
   }
 
-  return window.visualViewport.height
+  const documentBoundingRect = window.document.body.getBoundingClientRect()
+
+  const vvBottommostPoint = window.visualViewport.offsetTop + window.visualViewport.height
+  let correctionOffset = 0
+
+  if (vvBottommostPoint < documentBoundingRect.height * 0.99) {
+    correctionOffset = documentBoundingRect.height - vvBottommostPoint
+  }
+
+  return window.visualViewport.height + correctionOffset
 }
 
 function getWidthSnapshot(): number | null {
@@ -33,7 +42,16 @@ function getWidthSnapshot(): number | null {
     return null
   }
 
-  return window.visualViewport.width
+  const documentBoundingRect = window.document.body.getBoundingClientRect()
+
+  const vvRightmostPoint = window.visualViewport.offsetLeft + window.visualViewport.width
+  let correctionOffset = 0
+
+  if (vvRightmostPoint < documentBoundingRect.width * 0.99) {
+    correctionOffset = documentBoundingRect.width - vvRightmostPoint
+  }
+
+  return window.visualViewport.width + correctionOffset
 }
 
 function getOffsetTopSnapshot(): number | null {
